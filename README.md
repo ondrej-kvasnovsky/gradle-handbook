@@ -1,3 +1,10 @@
-# My Awesome Book
+# Gradle Handbook
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+This handbook is based on:
+
+* [Gradle in Action](https://www.manning.com/books/gradle-in-action) book
+* [Gradle documentation](https://gradle.org/docs)
+* Practical experience
+
+
+
