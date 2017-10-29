@@ -14,6 +14,20 @@ The `gradle init` task creates couple of files:
 * gradle.settings - contains project settings, like name of the project
 * gradle wrappers - that can be used to use a specific version of Gradle per project
 
+### Source folders
+
+We can add other directories as source folders. 
+
+```
+sourceSets {
+    main {
+        java {
+            srcDirs = ['other-src', 'src/main/java']
+        }
+    }
+}
+```
+
 ### Logging
 
 We can turn on or completelly turn off the logging. `-i` is for info logging leve, `-s` is for stacktrace and `-q` for quite logging, that results in no logs.
@@ -38,7 +52,7 @@ gradle properties
 
 ### Sub modules
 
-In order to create a project with sub module,`settings.gradle` file needs to contain inclusion of the sub module. 
+In order to create a project with sub module,`settings.gradle` file needs to contain inclusion of the sub module.
 
 ```
 rootProject.name = 'myproject'

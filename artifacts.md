@@ -1,6 +1,20 @@
 # Artifacts
 
-When we have applied Java plugin, we can run `gradle assemble` in order to create jar files in `build` directory. We can update the defaults. 
+### Simple Jar
+
+Jar task is provided by Java plugin. We can update its default configuration. For example, if we want to create a runnable jar, we need to provide main class, that will be inserted into manifest.
+
+```
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.test.Main'
+    }
+}
+```
+
+### Assemble task
+
+When we have applied Java plugin, we can run `gradle assemble` in order to create jar files in `build` directory. We can update the defaults.
 
 ```
 task sourcesJar(type: Jar) {
@@ -15,7 +29,7 @@ artifacts {
 
 ### Create distribution
 
-Apply plugin distribution and then we can create different distribution archives. Here we create `main` distribution, that contains all jars. Then we create `docs` distribution that contains all source files. 
+Apply plugin distribution and then we can create different distribution archives. Here we create `main` distribution, that contains all jars. Then we create `docs` distribution that contains all source files.
 
 ```
 apply plugin: 'distribution'
@@ -74,7 +88,6 @@ publishing {
         }
     }
 }
-
 ```
 
 

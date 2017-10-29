@@ -9,4 +9,5 @@
 * [Plugin](plugin.md)
 * [Artifacts](artifacts.md)
 * [Testing](testing.md)
+* [Versioning](versioning.md)
 
