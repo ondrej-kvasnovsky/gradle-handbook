@@ -1,6 +1,16 @@
 # Versioning
 
-Lets do the following exercise to understand versining concepts. 
+Lets do the following exercise to understand versining concepts.
+
+We will keep version in version.properties file.
+
+```
+major=5
+minor=5
+release=false
+```
+
+Then we can do the following to manipulate project version.
 
 ```
 class ProjectVersion {
@@ -75,5 +85,5 @@ task printVersion {
 build.finalizedBy printVersion // e.g., to define task to cleanup after some other task (e.g. build task)
 ```
 
-Other way to create project versioning is using enhanced task. 
+Other way to create project versioning is using enhanced task.
 
