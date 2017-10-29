@@ -7,4 +7,6 @@
 * [Task](create-task.md)
 * [Build](build.md)
 * [Plugin](plugin.md)
+* [Artifacts](artifacts.md)
+* [Testing](testing.md)
 

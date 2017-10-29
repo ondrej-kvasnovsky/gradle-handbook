@@ -36,7 +36,15 @@ We can print out all project properties using `properties` task.
 gradle properties
 ```
 
-### 
+### Sub modules
+
+In order to create a project with sub module,`settings.gradle` file needs to contain inclusion of the sub module. 
+
+```
+rootProject.name = 'myproject'
+include 'my-sub-module' // include is for modules included in the project directory
+// infludeFlat is for modules that are next to root directory (not in the root directory)
+```
 
 
 
