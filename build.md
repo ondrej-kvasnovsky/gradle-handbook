@@ -10,7 +10,7 @@ gradle.buildFinished {
 }
 ```
 
-We can access build settings in the build file. 
+We can access build settings in the build file.
 
 ```
 gradle.settingsEvaluated { Settings settings ->
@@ -21,7 +21,11 @@ gradle.settingsEvaluated { Settings settings ->
 
 Keep in mind that there are 3 phases during build:
 
-1. 1.Initialization 2.Configuration 3.Execution \(`settingsEvaluated` is called during Initialization\)
+1. Initialization
+2. Configuration
+3. Execution
+
+`settingsEvaluated` is called during Initialization phase.
 
 ### Deamon mode
 
