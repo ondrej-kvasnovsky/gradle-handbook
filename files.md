@@ -15,14 +15,14 @@ task copyMyFiles(type: Copy) {
 
 ### More complex copy task
 
-We can configure copy in many ways. We can include many directories, files and do many manipulations in single task. 
+We can configure copy in many ways. We can include many directories, files and do many manipulations in single task.
 
 ```
 def dataContent = copySpec {
      from 'src/data'
      include '*.data'
  }
- 
+
 task initConfig(type: Copy) {
    from('src/main/config') {
        include '**/*.properties'
@@ -41,7 +41,7 @@ task initConfig(type: Copy) {
    includeEmptyDirs = false
 
    with dataContent
-   
+
    rename { fileName ->
        "production-file${(fileName - 'file-template')}"
   }
@@ -50,7 +50,7 @@ task initConfig(type: Copy) {
 
 ### Templates
 
-Copy and transform a file. expand method uses SimpleTemplateEngine from Groovy. 
+Copy and transform a file. expand method uses SimpleTemplateEngine from Groovy.
 
 ```
 versionId = '1.6'
@@ -68,7 +68,7 @@ task fillInTemplate(type: Copy) {
 }
 ```
 
-While config can look like this \(it is a template\). 
+While config can look like this \(it is a template\).
 
 ```
 hostname: ${databaseHostname}
@@ -83,7 +83,7 @@ buildDate: ${date.format("yyyyMMdd'T'HHmmssZ")}
 
 ### Filtering file content
 
-We can filter content of copied file, line by line. 
+We can filter content of copied file, line by line.
 
 ```
 task filter(type: Copy) {
@@ -99,7 +99,7 @@ task filter(type: Copy) {
 
 ### File by file
 
-We can do operations for each file we are coping. 
+We can do operations for each file we are coping.
 
 ```
 task files(type: Copy) {
@@ -109,6 +109,44 @@ task files(type: Copy) {
     // do something fileCopyDetails.file.text
   }
 }
+```
+
+### Files
+
+The `files()` method returns collection of files based on input parameters. 
+
+```
+def f = files('src')
+println f.files
+println f.asPath
+```
+
+### FileTree
+
+Iterates through directory structure and collects the files as it traverses through the tree structure. 
+
+```
+def xmlFilesOnly = fileTree('src/main/resources') {
+  include '**/*.xml'
+}
+println xmlFilesOnly.files
+```
+
+### FileCollection operations
+
+FileCollections are lazily evaluated. We can contact or subtract file collections.
+
+```
+def poems = fileTree(dir: 'src/main/resources', include: '*.txt')
+def romantics = fileTree(dir: 'src/main/resources', include: 'shelley*')
+def goodPoems = poems - romantics
+```
+
+### Source sets
+
+```
+println sourceSets.main.allSource.files
+println sourceSets.main.output.files
 ```
 
 
