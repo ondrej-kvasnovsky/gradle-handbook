@@ -10,4 +10,5 @@
 * [Artifacts](artifacts.md)
 * [Files](files.md)
 * [Testing](testing.md)
+* [Rule](rule.md)
 
