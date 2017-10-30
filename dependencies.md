@@ -33,7 +33,7 @@ dependencies {
 
 ### Dependencies
 
-Add dependency without its transitive dependencies. 
+Add dependency without its transitive dependencies.
 
 ```
 dependencies {
@@ -53,13 +53,40 @@ dependencies {
 }
 ```
 
-Exclude a certain transitive dependency. 
+Exclude a certain transitive dependency.
 
 ```
 dependencies {
     compile('org.springframework:spring-core:5.0.0') {
         exclude name: 'commons-logging'
     }
+}
+```
+
+Add jar into compile configuration.
+
+```
+dependencies {
+  compile files('lib/hacked-vendor-module.jar')
+}
+```
+
+Add all jars from a folder into compile configuration.
+
+```
+dependencies {
+  compile fileTree('lib')
+}
+```
+
+### Project dependencies
+
+We can have dependencies on other sub-modules or aka projects.
+
+```
+dependencies {
+  compile project(':codec')
+  compile project(':content')
 }
 ```
 
@@ -72,7 +99,7 @@ repositories {
     mavenLocal() // => MavenArtifactRepository.java
     ivy {} // => IvyArtifactRepository.java
     maven {} // => MavenArtifactRepository.java
-    flatDir {} // => FlatDirectory.java
+    flatDir dirs: ["${projectDir}/lib"] // => FlatDirectory.java
 }
 ```
 
@@ -144,7 +171,7 @@ configurations.compile.resolutionStrategy {
 
 ### Creating own configuration
 
-We might need to create our own configuration \(a bucket\) to place our files \(dependencies\).This example shows how compile configuration can be created and used. 
+We might need to create our own configuration \(a bucket\) to place our files \(dependencies\).This example shows how compile configuration can be created and used.
 
 ```
 repositories {
@@ -167,10 +194,6 @@ configurations {
   myCompile.extendsFrom('compile')
 }
 ```
-
-
-
-
 
 
 
