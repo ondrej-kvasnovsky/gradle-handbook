@@ -8,6 +8,6 @@
 * [Build](build.md)
 * [Plugin](plugin.md)
 * [Artifacts](artifacts.md)
+* [Files](files.md)
 * [Testing](testing.md)
-* [Versioning](versioning.md)
 
