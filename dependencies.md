@@ -1,6 +1,6 @@
 # Dependencies
 
-Before we start adding dependencies, we need to say what plugis are going to be used. For Java project, we first have to apply Java plugin and then we can provide dependencies. 
+Before we start adding dependencies, we need to say what plugis are going to be used. For Java project, we first have to apply Java plugin and then we can provide dependencies.
 
 ```
 apply plugin: 'java'
@@ -31,6 +31,38 @@ dependencies {
 }
 ```
 
+### Dependencies
+
+Add dependency without its transitive dependencies. 
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.0') {
+        transitive = false
+    }
+}
+```
+
+Dominate a certain version over others.
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.0') {
+        force = true
+    }
+}
+```
+
+Exclude a certain transitive dependency. 
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.0') {
+        exclude name: 'commons-logging'
+    }
+}
+```
+
 ### Repositories
 
 We can obtain dependencies from multiple repository types.
@@ -54,7 +86,7 @@ gradle clean build --offline
 
 ### Browse dependencies
 
-We can create our own task to print all dependencies for a specific scope. 
+We can create our own task to print all dependencies for a specific scope.
 
 ```
 task printDeps {
@@ -66,7 +98,7 @@ task printDeps {
 }
 ```
 
-Other way to check dependencies is to use dependencies and dependencyInsight tasks that are provided by Gradle. 
+Other way to check dependencies is to use dependencies and dependencyInsight tasks that are provided by Gradle.
 
 ```
 gradle -q dependencies
@@ -75,7 +107,7 @@ gradle -q dependencyInsight --dependency slf4j-api
 
 ### Dependency resolution
 
-When using many libraries, there can be version conflicts of some libraries. We can force certain version of a library for our project. 
+When using many libraries, there can be version conflicts of some libraries. We can force certain version of a library for our project.
 
 ```
 configurations.compile.resolutionStrategy {
@@ -88,20 +120,20 @@ If we want to be strict and we want to avoid version conflicts, we might want to
 ```
 configurations.compile.resolutionStrategy {
     failOnVersionConflict()
-} 
+}
 ```
 
 ### Refreshing dependencies
 
-When working with SNAPSHOTs, we might want to force Gradle to reload dependencies. 
+When working with SNAPSHOTs, we might want to force Gradle to reload dependencies.
 
-We can refresh dependencies using --refresh-dependencies flag. 
+We can refresh dependencies using --refresh-dependencies flag.
 
 ```
 gradle --refresh-dependencies
 ```
 
-Or we can change caching times. 
+Or we can change caching times.
 
 ```
 configurations.compile.resolutionStrategy {
@@ -110,13 +142,31 @@ configurations.compile.resolutionStrategy {
 }
 ```
 
+### Creating own configuration
 
+We might need to create our own configuration \(a bucket\) to place our files \(dependencies\).This example shows how compile configuration can be created and used. 
 
+```
+repositories {
+  mavenCentral()
+}
+configurations {
+  compile
+}
+dependencies {
+  compile 'org.springframework:spring-core:3.0.5'
+}
+```
 
+For example Java plugin provides six configurations: archives, default, compile, runtime, testCompile testRuntime.
 
+Configurations can extend from other configurations.
 
-
-
+```
+configurations {
+  myCompile.extendsFrom('compile')
+}
+```
 
 
 
