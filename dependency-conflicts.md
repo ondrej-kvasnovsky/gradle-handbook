@@ -26,7 +26,7 @@ configurations.compile.resolutionStrategy {
 
 ### Exclude one of the conflicted dependencies
 
-Another way to get away is to exclude dependencies from a library that brings bad version of library. First we run `gradle -q dependencies` to find where is the conflict. 
+Another way to get away is to exclude dependencies from a library that brings bad version of library. First we run `gradle -q dependencies` to find where is the conflict.
 
 One disadvantage is that the code becomes less maintainable. Imagine we want to increase version of `spring-core` from 5.0.0 to 5.1.0. What if they removed commons-logging and we won't know about it? The dependency definition becomes messy because everybody will be afraid to remove that `exclude` statement.
 
@@ -40,7 +40,7 @@ dependencies {
 
 ### Force a specific version
 
-If there are many libraries that bring a bad versions of the same library, we can force a certain version to be used in the whole project. Excluding dependencies will make sure there is not a specific version, forcing a certain version of library will make sure there is certain version. It means, if we don't want to use the latest version, we can force Gradle to use older version. 
+If there are many libraries that bring a bad versions of the same library, we can force a certain version to be used in the whole project. Excluding dependencies will make sure there is not a specific version, forcing a certain version of library will make sure there is certain version. It means, if we don't want to use the latest version, we can force Gradle to use older version.
 
 ```
 configurations.compile.resolutionStrategy {
@@ -50,12 +50,10 @@ configurations.compile.resolutionStrategy {
 
 ### Shaded dependencies
 
-We can solve dependency conflict by creating a shaded dependencies. There is [shadow](https://github.com/johnrengelman/shadow) Gradle plugin to help us. The shadow plugin has to features: 
+We can solve dependency conflict by creating a shaded dependencies. There is [shadow](https://github.com/johnrengelman/shadow) Gradle plugin to help us. The shadow plugin has to features:
 
 * create executable jar
 * avoid dependency conflicts by moving libraries
 
-
-
-
+_TODO: example_
 
