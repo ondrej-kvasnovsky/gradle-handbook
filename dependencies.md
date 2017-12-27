@@ -43,7 +43,7 @@ dependencies {
 }
 ```
 
-Dominate a certain version over others.
+Dominate a certain version, including transitive dependencies, over others.
 
 ```
 dependencies {

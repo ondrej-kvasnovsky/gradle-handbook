@@ -40,11 +40,33 @@ dependencies {
 
 ### Force a specific version
 
-If there are many libraries that bring a bad versions of the same library, we can force a certain version to be used in the whole project. Excluding dependencies will make sure there is not a specific version, forcing a certain version of library will make sure there is certain version. It means, if we don't want to use the latest version, we can force Gradle to use older version.
+If there are many libraries that bring a bad versions of the same library, we can force a certain version to be used in the whole project. Excluding dependencies will make sure there is not a specific version, forcing a certain version of library will make sure there is certain version. It means, if we don't want to use the latest version, we can force Gradle to use older version. This version will be forced including transitive dependencies.
 
 ```
 configurations.compile.resolutionStrategy {
     force 'org.slf4j:slf4j-api:1.7.24'
+}
+```
+
+Dominate a certain version, including transitive dependencies, over others.
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.0') {
+        force = true
+    }
+}
+```
+
+### Remove transitive dependencies
+
+We can get rid of all transitive dependencies that would come from a library. 
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.0') {
+        transitive = false
+    }
 }
 ```
 
