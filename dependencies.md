@@ -12,6 +12,16 @@ dependencies {
 }
 ```
 
+### Dynamic versions
+
+We can then reuse all jar files in a folder and add them into a scope.
+
+```
+dependencies {
+    compile('org.springframework:spring-core:5.0.+'
+}
+```
+
 ### Work with dependencies
 
 We can takes all jars for given configuration and copies it into a specific folder. The following task is going to take all `compile` dependencies and copy it into to `copied` folder.

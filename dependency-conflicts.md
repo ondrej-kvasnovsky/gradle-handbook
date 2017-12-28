@@ -60,7 +60,7 @@ dependencies {
 
 ### Remove transitive dependencies
 
-We can get rid of all transitive dependencies that would come from a library. 
+We can get rid of all transitive dependencies that would come from a library.
 
 ```
 dependencies {
@@ -77,5 +77,35 @@ We can solve dependency conflict by creating a shaded dependencies. There is [sh
 * create executable jar
 * avoid dependency conflicts by moving libraries
 
-_TODO: example_
+Here is an [example](https://github.com/nebula-plugins/gradle-lint-plugin/blob/master/build.gradle) how to move classes inside jar. 
+
+```
+plugins {
+    id 'nebula.plugin-plugin' version '6.1.1'
+    id 'nebula.kotlin' version '1.2.10'
+    id 'com.github.johnrengelman.shadow' version '2.0.2'
+    id 'java-gradle-plugin'
+}
+shadowJar {
+    configurations = [project.configurations.plugin]
+    classifier = null
+    dependencies {
+        include(dependency('org.eclipse.jdt:core'))
+        include(dependency('org.eclipse.jgit:org.eclipse.jgit'))
+        include(dependency('commons-lang:commons-lang'))
+        include(dependency('org.codenarc:CodeNarc'))
+    }
+    relocate 'org.eclipse.jdt', 'com.netflix.nebula.lint.jdt'
+    relocate 'org.eclipse.jgit', 'com.netflix.nebula.lint.jgit'
+    relocate 'org.apache.commons.lang', 'com.netflix.nebula.lint.commons.lang'
+    relocate 'org.codenarc', 'com.netflix.nebula.lint.org.codenarc'
+
+    // powerassert is packed inside codenarc without relocation for some reason
+    relocate 'org.codehaus.groovy.transform.powerassert', 'com.netflix.nebula.lint.org.codehaus.groovy.transform.powerassert'
+}
+
+jar.dependsOn shadowJar
+```
+
+
 
