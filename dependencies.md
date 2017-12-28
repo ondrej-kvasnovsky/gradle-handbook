@@ -14,7 +14,7 @@ dependencies {
 
 ### Dynamic versions
 
-We can then reuse all jar files in a folder and add them into a scope.
+We can specify version using +. That will make sure that always highest version of that version level is used. Suppose we use [this semantic versioning](https://semver.org).
 
 ```
 dependencies {
