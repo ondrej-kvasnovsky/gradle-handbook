@@ -4,7 +4,7 @@ As time goes on, we add some libraries. As time goes on and on, we update code a
 
 ### Preview dependency tree
 
-Lets say we have multi module project that consists from the following modules. 
+Lets say we have multi module project that consists from the following modules.
 
 ```
 .
@@ -21,10 +21,16 @@ The app module, which is a directory, contains runnable application and we want 
 gradle :app:dependencies
 ```
 
-When we are dealing with bigger project, we might want to get dependency for a specific classpath configuration. For example, the application is running fine, but when we run tests, something does not compile. In that case, we want to check `testCompile` configuration. 
+When we are dealing with bigger project, we might want to get dependency for a specific classpath configuration. For example, the application is running fine, but when we run tests, something does not compile. In that case, we want to check `testCompile` configuration.
 
 ```
-gradle :application:dependencies --configuration testCompile
+gradle :app:dependencies --configuration testCompile
+```
+
+Or if everything compiles fine, but tests are failing in runtime, we might want to check testRuntime configuration. 
+
+```
+gradle :app:dependencies --configuration testRuntimeOnly
 ```
 
 ### Gradle Lint
