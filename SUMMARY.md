@@ -9,6 +9,7 @@
   * [Locking](dependencies/locking.md)
 * [Task](create-task.md)
 * [Build](build.md)
+  * [Speeding Up](build/speeding-up.md)
 * [Plugin](plugin.md)
 * [Artifacts](artifacts.md)
 * [Files](files.md)

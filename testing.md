@@ -1,8 +1,8 @@
 # Testing
 
-We are going to use Java plugin in this example to demonstrate how to use Gradle for testing our code. 
+We are going to use Java plugin in this example to demonstrate how to use Gradle for testing our code.
 
-First we apply Java plugin and add dependency to JUnit. 
+First we apply Java plugin and add dependency to JUnit.
 
 ```
 apply plugin: 'java'
@@ -18,7 +18,7 @@ dependencies {
 
 Then we can run all the tests: `gradle test`
 
-Or we can run a single test using test property: 
+Or we can run a single test using test property:
 
 ```
 gradle :sub-module:test -Dtest=com.test.MyTest
@@ -26,9 +26,9 @@ gradle :sub-module:test -Dtest=com.test.MyTest
 
 ### Separation of Unit and Integration tests
 
-We might have multiple types of tests in our projects. Typically, it is unit, integration and functional tests. Putting all the files into test folder is the default strategy, that could be considered as messy. We might want to put our tests into separate folders and run each set of tests separately. Unit tests should not require any special configuration. But the other tests, like integration, might require to start up databases or services. 
+We might have multiple types of tests in our projects. Typically, it is unit, integration and functional tests. Putting all the files into test folder is the default strategy, that could be considered as messy. We might want to put our tests into separate folders and run each set of tests separately. Unit tests should not require any special configuration. But the other tests, like integration, might require to start up databases or services.
 
-Lets create unit and integration tests in the next Gradle build script. 
+Lets create unit and integration tests in the next Gradle build script.
 
 ```
 // set system properties for tests
@@ -88,6 +88,20 @@ integrationTest2.beforeSuite { // gradle :sub-module:integrationTest2
 }
 integrationTest2.afterSuite {
     println "REALLY" // place for cleanup
+}
+```
+
+### Show logs and standard output in console
+
+By default, all standard outputs are hidden. We can change it and see the printed output in the console while tests are running. 
+
+```
+test {
+    testLogging {
+        exceptionFormat = 'full'
+        showStandardStreams = true
+        events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+    }
 }
 ```
 

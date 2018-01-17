@@ -27,10 +27,10 @@ When we are dealing with bigger project, we might want to get dependency for a s
 gradle :app:dependencies --configuration testCompile
 ```
 
-Or if everything compiles fine, but tests are failing in runtime, we might want to check testRuntime configuration. 
+Or if everything compiles fine, but tests are failing in runtime, we might want to check testRuntime configuration.
 
 ```
-gradle :app:dependencies --configuration testRuntimeOnly
+gradle :app:dependencies --configuration testRuntimeClasspath
 ```
 
 ### Gradle Lint
