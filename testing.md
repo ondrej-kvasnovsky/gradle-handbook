@@ -93,7 +93,7 @@ integrationTest2.afterSuite {
 
 ### Show logs and standard output in console
 
-By default, all standard outputs are hidden. We can change it and see the printed output in the console while tests are running. 
+By default, all standard outputs are hidden. We can change it and see the printed output in the console while tests are running.
 
 ```
 test {
@@ -101,6 +101,20 @@ test {
         exceptionFormat = 'full'
         showStandardStreams = true
         events "started", "passed", "skipped", "failed", "standardOut", "standardError"
+    }
+}
+```
+
+### Generate reports
+
+See more in [Gradle DSL](https://docs.gradle.org/current/dsl/index.html) documentation. 
+
+```
+test {
+    reports {
+        junitXml.enabled = true
+        junitXml.outputPerTestCase = false
+        html.enabled = false
     }
 }
 ```
